@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // Material UI
 import CssBaseline from "@material-ui/core/CssBaseline";
-
+import Button from "@material-ui/core/Button";
 // CSS
 import "./css/App.css";
 
@@ -31,10 +31,10 @@ function App() {
             <CssBaseline />
             <NoteModal open={open} handleClose={handleClose} />
             <SearchBar />
-            <NotesNavigation />
-            <button type="button" onClick={handleOpen}>
-                Open Modal
-            </button>
+            <div>
+                <NotesNavigation />
+                <Button onClick={handleOpen}>+ Add Note</Button>
+            </div>
             <NotesProgressBar />
             <NotesBoard />
         </div>
