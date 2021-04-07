@@ -3,10 +3,13 @@ import Card from "@material-ui/core/Card";
 import { styled } from "@material-ui/core/styles";
 
 const NoteCard = styled(Card)({
-    padding: "8em 8em",
-    margin: "2em",
     textAlign: "center",
-    border: "1px solid #2196F3"
+    background: "#66BB6A",
+    color: "white",
+    fontSize: "2rem",
+    minWidth: "22em",
+    minHeight: "7em",
+    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
 });
 
 type NoteProp = {

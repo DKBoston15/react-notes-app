@@ -4,17 +4,14 @@ import Grid from "@material-ui/core/Grid";
 // Components
 import Note from "../components/Note";
 
-const notes = [
-    { id: 1, name: "Example Note 1" },
-    { id: 2, name: "Example Note 2" },
-    { id: 3, name: "Example Note 3" },
-    { id: 4, name: "Example Note 4" }
-];
+type NotesProp = {
+    notes: { id: number; name: string }[];
+};
 
-const NotesBoard = () => {
+const NotesBoard = ({ notes }: NotesProp) => {
     return (
         <div>
-            <Grid container spacing={6}>
+            <Grid container spacing={3}>
                 {notes.map((note) => (
                     <Grid item xs={6}>
                         <Note name={note.name} id={note.id} key={note.id} />
