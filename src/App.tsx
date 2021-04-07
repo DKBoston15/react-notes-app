@@ -26,9 +26,11 @@ function App() {
     return (
         <div className="App">
             <CssBaseline />
-            <NoteModal open={open} handleClose={handleClose} />
-            <SearchBar />
-            <NotesNavigation handleOpen={handleOpen} />
+            <div className="AppContainer">
+                <NoteModal open={open} handleClose={handleClose} />
+                <SearchBar />
+                <NotesNavigation handleOpen={handleOpen} />
+            </div>
         </div>
     );
 }

@@ -22,9 +22,10 @@ type NavProp = {
 
 const NavContainer = styled(Container)({
     display: "flex",
-    justifyContent: "space-between",
     alignItems: "center",
-    maxWidth: "65%"
+    justifyContent: "space-between",
+    maxWidth: "100%",
+    marginTop: "1em"
 });
 const CustomAppBar = styled(AppBar)({
     maxWidth: "60%",
@@ -35,8 +36,10 @@ const CustomAppBar = styled(AppBar)({
 const AddNotesButton = styled(Button)({
     background: "#2196F3",
     color: "white",
-    padding: "1em 5em",
-    whiteSpace: "nowrap"
+    padding: ".5em .8em",
+    whiteSpace: "nowrap",
+    marginRight: "-1.3em",
+    fontSize: "1.2rem"
 });
 
 const NotesNavigation = ({ handleOpen }: NavProp) => {
