@@ -2,7 +2,7 @@
 import Grid from "@material-ui/core/Grid";
 
 // Components
-import Note from "../components/Note";
+import { Note } from "../components/Note";
 
 type NotesProp = {
     notes: { id: number; name: string }[];
@@ -22,4 +22,4 @@ const NotesBoard = ({ notes }: NotesProp) => {
     );
 };
 
-export default NotesBoard;
+export { NotesBoard };

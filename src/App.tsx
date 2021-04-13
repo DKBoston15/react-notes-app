@@ -8,9 +8,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "./css/App.css";
 
 // Components
-import SearchBar from "./components/SearchBar";
-import NoteModal from "./components/NoteModal";
-import NotesNavigation from "./components/NotesNavigation";
+import { SearchBar } from "./components/SearchBar";
+import { NoteModal } from "./components/NoteModal";
+import { NotesNavigation } from "./components/NotesNavigation";
 
 function App() {
     // Modal State

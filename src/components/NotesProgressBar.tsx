@@ -12,4 +12,4 @@ const NotesProgressBar = () => {
     return <ProgressBar value={75} />;
 };
 
-export default NotesProgressBar;
+export { NotesProgressBar };

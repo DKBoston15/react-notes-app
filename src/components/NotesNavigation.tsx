@@ -13,8 +13,8 @@ import Container from "@material-ui/core/Container";
 import { styled } from "@material-ui/core/styles";
 
 // Components
-import NotesProgressBar from "./NotesProgressBar";
-import NotesBoard from "./NotesBoard";
+import { NotesProgressBar } from "./NotesProgressBar";
+import { NotesBoard } from "./NotesBoard";
 
 type NavProp = {
     handleOpen: () => void;
@@ -111,4 +111,4 @@ const NotesNavigation = ({ handleOpen }: NavProp) => {
     );
 };
 
-export default NotesNavigation;
+export { NotesNavigation };

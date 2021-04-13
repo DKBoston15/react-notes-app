@@ -20,4 +20,4 @@ const Note = ({ name }: NoteProp) => {
     return <NoteCard>{name}</NoteCard>;
 };
 
-export default Note;
+export { Note };

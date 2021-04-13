@@ -24,4 +24,4 @@ const NoteModal = ({ open, handleClose }: ModalProp) => {
     );
 };
 
-export default NoteModal;
+export { NoteModal };
