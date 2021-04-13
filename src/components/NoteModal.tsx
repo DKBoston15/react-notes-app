@@ -11,12 +11,12 @@ const NoteModalComponent = styled(Modal)({
     alignItems: "center"
 });
 
-type ModalProp = {
+interface IModalProp {
     open: boolean;
     handleClose: () => void;
-};
+}
 
-const NoteModal = ({ open, handleClose }: ModalProp) => {
+const NoteModal = ({ open, handleClose }: IModalProp) => {
     return (
         <NoteModalComponent open={open} onClose={handleClose}>
             <div className="noteContainer">Note Modal</div>

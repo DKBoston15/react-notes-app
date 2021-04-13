@@ -12,11 +12,11 @@ const NoteCard = styled(Card)({
     boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
 });
 
-type NoteProp = {
+interface INoteProp {
     id: number;
     name: string;
-};
-const Note = ({ name }: NoteProp) => {
+}
+const Note = ({ name }: INoteProp) => {
     return <NoteCard>{name}</NoteCard>;
 };
 

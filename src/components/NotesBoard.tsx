@@ -4,11 +4,11 @@ import Grid from "@material-ui/core/Grid";
 // Components
 import { Note } from "../components/Note";
 
-type NotesProp = {
+interface INotesProp {
     notes: { id: number; name: string }[];
-};
+}
 
-const NotesBoard = ({ notes }: NotesProp) => {
+const NotesBoard = ({ notes }: INotesProp) => {
     return (
         <div>
             <Grid container spacing={3}>

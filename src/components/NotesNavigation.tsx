@@ -16,9 +16,9 @@ import { styled } from "@material-ui/core/styles";
 import { NotesProgressBar } from "./NotesProgressBar";
 import { NotesBoard } from "./NotesBoard";
 
-type NavProp = {
+interface INavProp {
     handleOpen: () => void;
-};
+}
 
 const NavContainer = styled(Container)({
     display: "flex",
@@ -61,7 +61,7 @@ const personalNotesList = [
     { id: 12, name: "Example Note 12" }
 ];
 
-const NotesNavigation = ({ handleOpen }: NavProp) => {
+const NotesNavigation = ({ handleOpen }: INavProp) => {
     const [tab, setTab] = useState("all");
     const [allNotes, setAllNotes] = useState(
         homeNotesList.concat(workNotesList, personalNotesList)
