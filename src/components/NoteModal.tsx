@@ -1,14 +1,16 @@
 // Material UI
 import Modal from "@material-ui/core/Modal";
+import Box from "@material-ui/core/Box";
 import { styled } from "@material-ui/core/styles";
-
-// CSS
-import "../css/Modal.css";
 
 const NoteModalComponent = styled(Modal)({
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
+});
+const ModalContent = styled(Box)({
+    background: "white",
+    padding: "20% 30%"
 });
 
 interface IModalProp {
@@ -19,7 +21,7 @@ interface IModalProp {
 const NoteModal = ({ open, handleClose }: IModalProp) => {
     return (
         <NoteModalComponent open={open} onClose={handleClose}>
-            <div className="noteContainer">Note Modal</div>
+            <ModalContent>Note Modal</ModalContent>
         </NoteModalComponent>
     );
 };
