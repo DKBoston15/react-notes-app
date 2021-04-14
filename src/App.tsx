@@ -3,6 +3,7 @@ import { useState } from "react";
 
 // Material UI
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Box from "@material-ui/core/Box";
 
 // CSS
 import "./css/App.css";
@@ -24,14 +25,20 @@ function App() {
         setOpen(true);
     };
     return (
-        <div className="App">
+        <Box display="flex" alignItems="center" justifyContent="center">
             <CssBaseline />
-            <div className="AppContainer">
+            <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                width="60%"
+                flexDirection="column"
+            >
                 <NoteModal open={open} handleClose={handleClose} />
                 <SearchBar />
                 <NotesNavigation handleOpen={handleOpen} />
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 }
 
