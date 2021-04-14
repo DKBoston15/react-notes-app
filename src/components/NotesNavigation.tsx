@@ -4,7 +4,6 @@ import { useState } from "react";
 // Material UI
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
-import TabPanel from "@material-ui/lab/TabPanel";
 import TabList from "@material-ui/lab/TabList";
 import TabContext from "@material-ui/lab/TabContext";
 import Tab from "@material-ui/core/Tab";
@@ -13,11 +12,16 @@ import Container from "@material-ui/core/Container";
 import { styled } from "@material-ui/core/styles";
 
 // Components
-import { NotesProgressBar } from "./NotesProgressBar";
+// import { NotesProgressBar } from "./NotesProgressBar";
 import { NotesBoard } from "./NotesBoard";
 
 interface INavProp {
     handleOpen: () => void;
+}
+interface INotes {
+    id: number;
+    name: string;
+    category: string;
 }
 
 const NavContainer = styled(Container)({
@@ -42,35 +46,39 @@ const AddNotesButton = styled(Button)({
     fontSize: "1.2rem"
 });
 
-const homeNotesList = [
-    { id: 1, name: "Example Note 1" },
-    { id: 2, name: "Example Note 2" },
-    { id: 3, name: "Example Note 3" },
-    { id: 4, name: "Example Note 4" }
-];
-const workNotesList = [
-    { id: 5, name: "Example Note 5" },
-    { id: 6, name: "Example Note 6" },
-    { id: 7, name: "Example Note 7" },
-    { id: 8, name: "Example Note 8" }
-];
-const personalNotesList = [
-    { id: 9, name: "Example Note 9" },
-    { id: 10, name: "Example Note 10" },
-    { id: 11, name: "Example Note 11" },
-    { id: 12, name: "Example Note 12" }
+const noteList = [
+    { id: 1, name: "Example Note 1", category: "home" },
+    { id: 2, name: "Example Note 2", category: "home" },
+    { id: 3, name: "Example Note 3", category: "home" },
+    { id: 4, name: "Example Note 4", category: "home" },
+    { id: 5, name: "Example Note 5", category: "work" },
+    { id: 6, name: "Example Note 6", category: "work" },
+    { id: 7, name: "Example Note 7", category: "work" },
+    { id: 8, name: "Example Note 8", category: "work" },
+    { id: 9, name: "Example Note 9", category: "personal" },
+    { id: 10, name: "Example Note 10", category: "personal" },
+    { id: 11, name: "Example Note 11", category: "personal" },
+    { id: 12, name: "Example Note 12", category: "personal" }
 ];
 
 const NotesNavigation = ({ handleOpen }: INavProp) => {
     const [tab, setTab] = useState("all");
-    const [allNotes, setAllNotes] = useState(
-        homeNotesList.concat(workNotesList, personalNotesList)
-    );
-    const [homeNotes, setHomeNotes] = useState(homeNotesList);
-    const [workNotes, setWorkNotes] = useState(workNotesList);
-    const [personalNotes, setPersonalNotes] = useState(personalNotesList);
+    const [notes, setNotes] = useState(noteList);
+    const [filteredNotes, setFilteredNotes] = useState(noteList);
+
+    const filerNotes = (notes: INotes[]) => {
+        console.log(tab);
+        console.log(notes.filter((e) => e.category === tab));
+        if (tab === "all") {
+            return notes;
+        }
+        let newNotes = notes.filter((e) => e.category === tab);
+        return newNotes;
+    };
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-        setTab(newValue);
+        console.log(newValue);
+        setTab(`${newValue}`);
+        setFilteredNotes(filerNotes(notes));
     };
     return (
         <div>
@@ -90,22 +98,7 @@ const NotesNavigation = ({ handleOpen }: INavProp) => {
                         + Add Note
                     </AddNotesButton>
                 </NavContainer>
-                <TabPanel value="all">
-                    {/* <NotesProgressBar /> */}
-                    <NotesBoard notes={allNotes} />
-                </TabPanel>
-                <TabPanel value="home">
-                    {/* <NotesProgressBar /> */}
-                    <NotesBoard notes={homeNotes} />
-                </TabPanel>
-                <TabPanel value="work">
-                    {/* <NotesProgressBar /> */}
-                    <NotesBoard notes={workNotes} />
-                </TabPanel>
-                <TabPanel value="personal">
-                    {/* <NotesProgressBar /> */}
-                    <NotesBoard notes={personalNotes} />
-                </TabPanel>
+                <NotesBoard notes={filteredNotes} />
             </TabContext>
         </div>
     );

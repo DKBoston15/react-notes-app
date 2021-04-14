@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { Note } from "../components/Note";
 
 interface INotesProp {
-    notes: { id: number; name: string }[];
+    notes: { id: number; name: string; category: string }[];
 }
 
 const NotesBoard = ({ notes }: INotesProp) => {

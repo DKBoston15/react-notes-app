@@ -5,9 +5,6 @@ import { useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
 
-// CSS
-import "./css/App.css";
-
 // Components
 import { SearchBar } from "./components/SearchBar";
 import { NoteModal } from "./components/NoteModal";
