@@ -6,9 +6,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
 
 // Components
-import { SearchBar } from "./components/SearchBar";
-import { NoteModal } from "./components/NoteModal";
-import { NotesNavigation } from "./components/NotesNavigation";
+import { SearchBar } from "./modules/notes/SearchBar";
+import { NoteModal } from "./modules/notes/NoteModal";
+import { NotesNavigation } from "./modules/notes/NotesNavigation";
 
 function App() {
     // Modal State

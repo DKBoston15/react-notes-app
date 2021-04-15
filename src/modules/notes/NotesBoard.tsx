@@ -2,7 +2,7 @@
 import Grid from "@material-ui/core/Grid";
 
 // Components
-import { Note } from "../components/Note";
+import { Note } from "./Note";
 
 interface INotesProp {
     notes: { id: number; name: string; category: string }[];

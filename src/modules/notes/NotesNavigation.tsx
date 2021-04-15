@@ -68,7 +68,7 @@ export const NotesNavigation = ({ handleOpen }: INavProp) => {
     const [notes, setNotes] = useState(noteList);
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-        setTab(`${newValue}`);
+        setTab(newValue);
     };
 
     const filteredNotes = useMemo(() => {
