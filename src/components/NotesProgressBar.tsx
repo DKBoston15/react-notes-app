@@ -1,15 +1,16 @@
 // Material UI
 import LinearProgress from "@material-ui/core/LinearProgress";
-import { styled } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-const ProgressBar = styled(LinearProgress)({
-    height: "1em",
-    width: "50%",
-    marginTop: "1em"
+const useStyles = makeStyles({
+    linearProgressBar: {
+        height: "1em",
+        width: "50%",
+        marginTop: "1em"
+    }
 });
 
-const NotesProgressBar = () => {
-    return <ProgressBar value={75} />;
+export const NotesProgressBar = () => {
+    const { linearProgressBar } = useStyles();
+    return <LinearProgress className={linearProgressBar} value={75} />;
 };
-
-export { NotesProgressBar };

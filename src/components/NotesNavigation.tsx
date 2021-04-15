@@ -1,5 +1,5 @@
 // React
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 // Material UI
 import AppBar from "@material-ui/core/AppBar";
@@ -9,7 +9,7 @@ import TabContext from "@material-ui/lab/TabContext";
 import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
-import { styled } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 // Components
 // import { NotesProgressBar } from "./NotesProgressBar";
@@ -24,26 +24,28 @@ interface INotes {
     category: string;
 }
 
-const NavContainer = styled(Container)({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    maxWidth: "100%",
-    marginTop: "1em"
-});
-const CustomAppBar = styled(AppBar)({
-    maxWidth: "60%",
-    background: "none",
-    color: "black",
-    boxShadow: "none"
-});
-const AddNotesButton = styled(Button)({
-    background: "#2196F3",
-    color: "white",
-    padding: ".5em .8em",
-    whiteSpace: "nowrap",
-    marginRight: "-1.3em",
-    fontSize: "1.2rem"
+const useStyles = makeStyles({
+    navContainer: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        maxWidth: "100%",
+        marginTop: "1em"
+    },
+    customAppBar: {
+        maxWidth: "60%",
+        background: "none",
+        color: "black",
+        boxShadow: "none"
+    },
+    addNotesButton: {
+        background: "#2196F3",
+        color: "white",
+        padding: ".5em .8em",
+        whiteSpace: "nowrap",
+        marginRight: "-1.3em",
+        fontSize: "1.2rem"
+    }
 });
 
 const noteList = [
@@ -61,10 +63,14 @@ const noteList = [
     { id: 12, name: "Example Note 12", category: "personal" }
 ];
 
-const NotesNavigation = ({ handleOpen }: INavProp) => {
+// 1. Don't duplicate useState when you don't have to
+// 2. Extract JS specific functions to e.g. utils.ts or helpers.ts
+// 3. You can even create a custom hook e.g. useNotes to abstract business logic in React.
+// 4. Point 2 will allow you to wirte great unit tests using e.g. jest
+export const NotesNavigation = ({ handleOpen }: INavProp) => {
+    const { navContainer, customAppBar, addNotesButton } = useStyles();
     const [tab, setTab] = useState("all");
     const [notes, setNotes] = useState(noteList);
-    const [filteredNotes, setFilteredNotes] = useState(noteList);
 
     const filerNotes = (notes: INotes[]) => {
         console.log(tab);
@@ -78,13 +84,15 @@ const NotesNavigation = ({ handleOpen }: INavProp) => {
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         console.log(newValue);
         setTab(`${newValue}`);
-        setFilteredNotes(filerNotes(notes));
     };
+
+    const filteredNotes = useMemo(() => filerNotes(notes), [notes]);
+
     return (
         <div>
             <TabContext value={tab}>
-                <NavContainer>
-                    <CustomAppBar position="static">
+                <Container className={navContainer}>
+                    <AppBar position="static" className={customAppBar}>
                         <TabList onChange={handleChange}>
                             <Tabs>
                                 <Tab label="All" value={"all"} />
@@ -93,15 +101,13 @@ const NotesNavigation = ({ handleOpen }: INavProp) => {
                                 <Tab label="Personal" value={"personal"} />
                             </Tabs>
                         </TabList>
-                    </CustomAppBar>
-                    <AddNotesButton onClick={handleOpen}>
+                    </AppBar>
+                    <Button className={addNotesButton} onClick={handleOpen}>
                         + Add Note
-                    </AddNotesButton>
-                </NavContainer>
+                    </Button>
+                </Container>
                 <NotesBoard notes={filteredNotes} />
             </TabContext>
         </div>
     );
 };
-
-export { NotesNavigation };

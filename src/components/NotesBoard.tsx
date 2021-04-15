@@ -8,7 +8,7 @@ interface INotesProp {
     notes: { id: number; name: string; category: string }[];
 }
 
-const NotesBoard = ({ notes }: INotesProp) => {
+export const NotesBoard = ({ notes }: INotesProp) => {
     return (
         <div>
             <Grid container spacing={3}>
@@ -21,5 +21,3 @@ const NotesBoard = ({ notes }: INotesProp) => {
         </div>
     );
 };
-
-export { NotesBoard };
