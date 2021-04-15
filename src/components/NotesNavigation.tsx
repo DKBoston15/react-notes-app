@@ -18,11 +18,6 @@ import { NotesBoard } from "./NotesBoard";
 interface INavProp {
     handleOpen: () => void;
 }
-interface INotes {
-    id: number;
-    name: string;
-    category: string;
-}
 
 const useStyles = makeStyles({
     navContainer: {
@@ -72,21 +67,17 @@ export const NotesNavigation = ({ handleOpen }: INavProp) => {
     const [tab, setTab] = useState("all");
     const [notes, setNotes] = useState(noteList);
 
-    const filerNotes = (notes: INotes[]) => {
-        console.log(tab);
-        console.log(notes.filter((e) => e.category === tab));
+    const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+        setTab(`${newValue}`);
+    };
+
+    const filteredNotes = useMemo(() => {
         if (tab === "all") {
             return notes;
         }
         let newNotes = notes.filter((e) => e.category === tab);
         return newNotes;
-    };
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-        console.log(newValue);
-        setTab(`${newValue}`);
-    };
-
-    const filteredNotes = useMemo(() => filerNotes(notes), [notes]);
+    }, [notes, tab]);
 
     return (
         <div>
