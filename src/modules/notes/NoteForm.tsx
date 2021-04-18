@@ -121,7 +121,12 @@ export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
                         </Box>
                         {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                         <Box className={classes.buttonContainer}>
-                            <Button className={classes.button}>Cancel</Button>
+                            <Button
+                                onClick={handleClose}
+                                className={classes.button}
+                            >
+                                Cancel
+                            </Button>
                             <Button
                                 className={classes.button}
                                 disabled={isSubmitting}

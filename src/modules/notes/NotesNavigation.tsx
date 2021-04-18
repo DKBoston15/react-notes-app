@@ -20,26 +20,34 @@ interface INavProp {
 }
 
 const useStyles = makeStyles({
+    customTab: {
+        background: "blue",
+        color: "white",
+        borderRadius: "5px",
+        width: ".2em !important",
+        margin: "0 .2em"
+    },
     navContainer: {
         display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        maxWidth: "100%",
-        marginTop: "1em"
+        marginTop: "1em",
+        padding: "0"
     },
     customAppBar: {
-        maxWidth: "60%",
         background: "none",
+        width: "100%",
         color: "black",
-        boxShadow: "none"
+        boxShadow: "none",
+        justifyContent: "space-between",
+        display: "flex",
+        flexDirection: "row"
     },
     addNotesButton: {
         background: "#2196F3",
+        padding: "0 4em",
         color: "white",
-        padding: ".5em .8em",
         whiteSpace: "nowrap",
-        marginRight: "-1.3em",
-        fontSize: "1.2rem"
+        width: "1em",
+        borderRadius: "5px"
     }
 });
 
@@ -48,7 +56,12 @@ const useStyles = makeStyles({
 // 3. You can even create a custom hook e.g. useNotes to abstract business logic in React.
 // 4. Point 2 will allow you to wirte great unit tests using e.g. jest
 export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
-    const { navContainer, customAppBar, addNotesButton } = useStyles();
+    const {
+        navContainer,
+        customAppBar,
+        addNotesButton,
+        customTab
+    } = useStyles();
     // Tab State
     const [tab, setTab] = useState("all");
 
@@ -72,16 +85,32 @@ export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
                     <AppBar position="static" className={customAppBar}>
                         <TabList onChange={handleChange}>
                             <Tabs>
-                                <Tab label="All" value={"all"} />
-                                <Tab label="Home" value={"home"} />
-                                <Tab label="Work" value={"work"} />
-                                <Tab label="Personal" value={"personal"} />
+                                <Tab
+                                    className={customTab}
+                                    label="All"
+                                    value={"all"}
+                                />
+                                <Tab
+                                    className={customTab}
+                                    label="Home"
+                                    value={"home"}
+                                />
+                                <Tab
+                                    className={customTab}
+                                    label="Work"
+                                    value={"work"}
+                                />
+                                <Tab
+                                    className={customTab}
+                                    label="Personal"
+                                    value={"personal"}
+                                />
                             </Tabs>
                         </TabList>
+                        <Button className={addNotesButton} onClick={handleOpen}>
+                            + Add Note
+                        </Button>
                     </AppBar>
-                    <Button className={addNotesButton} onClick={handleOpen}>
-                        + Add Note
-                    </Button>
                 </Container>
                 <NotesBoard notes={filteredNotes} />;
             </TabContext>
