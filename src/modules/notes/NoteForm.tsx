@@ -1,23 +1,24 @@
 // Material UI
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import { Formik, Field, Form } from "formik";
 
 const useStyles = makeStyles({
     title: {
         paddingLeft: "4rem",
         color: "#858585",
-        paddingTop: ".3em"
+        paddingTop: ".3em",
+        fontSize: "2rem"
     },
     form: {
         width: "100%",
         height: "100%",
+        display: "flex",
         flexDirection: "row",
         marginTop: "3rem"
     },
@@ -40,8 +41,8 @@ const useStyles = makeStyles({
     buttonContainer: {
         display: "flex",
         position: "absolute",
-        bottom: "10em",
-        right: "4em"
+        bottom: "16em",
+        right: "26em"
     },
     button: {
         color: "#2196F3"
@@ -49,47 +50,69 @@ const useStyles = makeStyles({
 });
 
 export const NoteForm = () => {
-    const {
-        form,
-        leftContentContainer,
-        rightContentContainer,
-        title,
-        textContentField,
-        buttonContainer,
-        button
-    } = useStyles();
+    const classes = useStyles();
     return (
         <>
-            <Typography variant="h4" className={title}>
+            <Typography variant="h4" className={classes.title}>
                 Add Note
             </Typography>
             <hr />
-            <FormControl className={form}>
-                <Box className={leftContentContainer}>
-                    <TextField label="Title..." variant="filled" />
-                    <TextField
-                        className={textContentField}
-                        label="Description..."
-                        multiline
-                        variant="filled"
-                        rows={8}
-                    />
-                </Box>
-                <Box className={rightContentContainer}>
-                    <Select variant="filled">
-                        <MenuItem value="">
-                            <em>Select Category</em>
-                        </MenuItem>
-                        <MenuItem value="home">Home</MenuItem>
-                        <MenuItem value="work">Work</MenuItem>
-                        <MenuItem value="personal">Personal</MenuItem>
-                    </Select>
-                </Box>
-                <Box className={buttonContainer}>
-                    <Button className={button}>Cancel</Button>
-                    <Button className={button}>Add</Button>
-                </Box>
-            </FormControl>
+            <Formik
+                initialValues={{ title: "", description: "", category: "" }}
+                onSubmit={(data, { setSubmitting }) => {
+                    setSubmitting(true);
+                    console.log("submit: ", data);
+                    setSubmitting(false);
+                }}
+            >
+                {({ values, isSubmitting, handleChange }) => (
+                    <Form className={classes.form}>
+                        <Box className={classes.leftContentContainer}>
+                            <Field
+                                placeholder="Title"
+                                name="title"
+                                type="input"
+                                as={TextField}
+                            />
+                            <Field
+                                className={classes.textContentField}
+                                name="description"
+                                type="input"
+                                as={TextField}
+                                label="Description..."
+                                multiline
+                                variant="filled"
+                                rows={8}
+                            />
+                        </Box>
+                        <Box className={classes.rightContentContainer}>
+                            <Select
+                                name="category"
+                                value={values.category}
+                                onChange={handleChange}
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value="home">Home</MenuItem>
+                                <MenuItem value="work">Work</MenuItem>
+                                <MenuItem value="personal">Personal</MenuItem>
+                            </Select>
+                        </Box>
+                        {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                        <Box className={classes.buttonContainer}>
+                            <Button className={classes.button}>Cancel</Button>
+                            <Button
+                                className={classes.button}
+                                disabled={isSubmitting}
+                                type="submit"
+                            >
+                                Add
+                            </Button>
+                        </Box>
+                    </Form>
+                )}
+            </Formik>
         </>
     );
 };

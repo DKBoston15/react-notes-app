@@ -12,7 +12,12 @@ const useStyles = makeStyles({
 });
 
 interface INotesProp {
-    notes: { id: number; name: string; category: string }[];
+    notes: {
+        id: number;
+        title: string;
+        category: string;
+        description: string;
+    }[];
 }
 
 export const NotesBoard = ({ notes }: INotesProp) => {
@@ -21,7 +26,12 @@ export const NotesBoard = ({ notes }: INotesProp) => {
         <Grid container spacing={3} className={grid}>
             {notes.map((note) => (
                 <Grid item xs={6}>
-                    <Note name={note.name} id={note.id} key={note.id} />
+                    <Note
+                        title={note.title}
+                        description={note.description}
+                        id={note.id}
+                        key={note.id}
+                    />
                 </Grid>
             ))}
         </Grid>
