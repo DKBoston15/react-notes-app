@@ -1,5 +1,5 @@
 // React
-import { useState, useMemo, useContext } from "react";
+import { useState, useMemo } from "react";
 
 // Material UI
 import AppBar from "@material-ui/core/AppBar";
@@ -14,12 +14,9 @@ import { makeStyles } from "@material-ui/core/styles";
 // Components
 // import { NotesProgressBar } from "./NotesProgressBar";
 import { NotesBoard } from "./NotesBoard";
-
-// Context
-import { NotesContext } from "../../shared/NotesContext";
-
 interface INavProp {
     handleOpen: () => void;
+    notes: Array<any>;
 }
 
 const useStyles = makeStyles({
@@ -50,13 +47,10 @@ const useStyles = makeStyles({
 // 2. Extract JS specific functions to e.g. utils.ts or helpers.ts
 // 3. You can even create a custom hook e.g. useNotes to abstract business logic in React.
 // 4. Point 2 will allow you to wirte great unit tests using e.g. jest
-export const NotesNavigation = ({ handleOpen }: INavProp) => {
+export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
     const { navContainer, customAppBar, addNotesButton } = useStyles();
     // Tab State
     const [tab, setTab] = useState("all");
-
-    // Context
-    const { notes } = useContext(NotesContext);
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
         setTab(newValue);
@@ -67,6 +61,7 @@ export const NotesNavigation = ({ handleOpen }: INavProp) => {
             return notes;
         }
         let newNotes = notes.filter((e) => e.category === tab);
+        console.log(newNotes);
         return newNotes;
     }, [notes, tab]);
 
@@ -88,7 +83,7 @@ export const NotesNavigation = ({ handleOpen }: INavProp) => {
                         + Add Note
                     </Button>
                 </Container>
-                <NotesBoard notes={filteredNotes} />
+                <NotesBoard notes={filteredNotes} />;
             </TabContext>
         </div>
     );

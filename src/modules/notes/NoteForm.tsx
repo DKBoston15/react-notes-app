@@ -8,6 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Field, Form } from "formik";
 
+// UUID
+import { v4 as uuidv4 } from "uuid";
+
 const useStyles = makeStyles({
     title: {
         paddingLeft: "4rem",
@@ -49,7 +52,15 @@ const useStyles = makeStyles({
     }
 });
 
-export const NoteForm = () => {
+interface INoteFormProps {
+    setNotes(notes: Array<any>): any;
+    handleClose: () => void;
+    notes: Array<any>;
+}
+
+// Install UUID and add ID to new note
+
+export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
     const classes = useStyles();
     return (
         <>
@@ -58,11 +69,20 @@ export const NoteForm = () => {
             </Typography>
             <hr />
             <Formik
-                initialValues={{ title: "", description: "", category: "" }}
+                initialValues={{
+                    id: uuidv4(),
+                    title: "",
+                    description: "",
+                    category: ""
+                }}
                 onSubmit={(data, { setSubmitting }) => {
                     setSubmitting(true);
                     console.log("submit: ", data);
+                    let newNotes = [...notes, data];
+                    setNotes(newNotes);
+                    console.log("NOTES: ", notes);
                     setSubmitting(false);
+                    handleClose();
                 }}
             >
                 {({ values, isSubmitting, handleChange }) => (

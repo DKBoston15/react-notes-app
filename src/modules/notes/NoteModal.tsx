@@ -21,15 +21,26 @@ const useStyles = makeStyles({
 
 interface IModalProp {
     open: boolean;
+    notes: Array<any>;
     handleClose: () => void;
+    setNotes(notes: Array<any>): any;
 }
 
-export const NoteModal = ({ open, handleClose }: IModalProp) => {
+export const NoteModal = ({
+    open,
+    handleClose,
+    setNotes,
+    notes
+}: IModalProp) => {
     const { modalContainer, modalContent } = useStyles();
     return (
         <Modal className={modalContainer} open={open} onClose={handleClose}>
             <Box className={modalContent}>
-                <NoteForm />
+                <NoteForm
+                    notes={notes}
+                    setNotes={setNotes}
+                    handleClose={handleClose}
+                />
             </Box>
         </Modal>
     );
