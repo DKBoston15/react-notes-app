@@ -31,6 +31,10 @@ const useStyles = makeStyles({
     },
     descriptionText: {
         color: "hsla(0, 0%, 100%, 0.85)"
+    },
+    titleText: {
+        fontSize: "1.4em",
+        fontWeight: "bold"
     }
 });
 interface INoteProp {
@@ -43,8 +47,7 @@ interface INoteProp {
 export const Note = ({ title, description, category }: INoteProp) => {
     const classes = useStyles();
 
-    // s
-    // s
+    // TODO: Review section below to see if there is a better way to have multiple dynamic classes with TS
 
     const [cardBG, setCardBG] = useState("");
     useMemo(() => {
@@ -68,9 +71,9 @@ export const Note = ({ title, description, category }: INoteProp) => {
                     alignItems="center"
                     justifyContent="space-between"
                 >
-                    <Box>
+                    <Box display="flex" alignItems="center">
                         <Checkbox color="secondary" />
-                        {title}
+                        <div className={classes.titleText}>{title}</div>
                     </Box>
                     <Box
                         width="4em"
