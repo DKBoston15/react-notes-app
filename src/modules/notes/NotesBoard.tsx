@@ -29,6 +29,7 @@ export const NotesBoard = ({ notes }: INotesProp) => {
                     <Note
                         title={note.title}
                         description={note.description}
+                        category={note.category}
                         id={note.id}
                         key={note.id}
                     />
