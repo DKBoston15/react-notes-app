@@ -20,13 +20,6 @@ interface INavProp {
 }
 
 const useStyles = makeStyles({
-    customTab: {
-        background: "blue",
-        color: "white",
-        borderRadius: "5px",
-        width: ".2em !important",
-        margin: "0 .2em"
-    },
     navContainer: {
         display: "flex",
         marginTop: "1em",
@@ -56,12 +49,7 @@ const useStyles = makeStyles({
 // 3. You can even create a custom hook e.g. useNotes to abstract business logic in React.
 // 4. Point 2 will allow you to wirte great unit tests using e.g. jest
 export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
-    const {
-        navContainer,
-        customAppBar,
-        addNotesButton,
-        customTab
-    } = useStyles();
+    const { navContainer, customAppBar, addNotesButton } = useStyles();
     // Tab State
     const [tab, setTab] = useState("all");
 
@@ -85,26 +73,10 @@ export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
                     <AppBar position="static" className={customAppBar}>
                         <TabList onChange={handleChange}>
                             <Tabs>
-                                <Tab
-                                    className={customTab}
-                                    label="All"
-                                    value={"all"}
-                                />
-                                <Tab
-                                    className={customTab}
-                                    label="Home"
-                                    value={"home"}
-                                />
-                                <Tab
-                                    className={customTab}
-                                    label="Work"
-                                    value={"work"}
-                                />
-                                <Tab
-                                    className={customTab}
-                                    label="Personal"
-                                    value={"personal"}
-                                />
+                                <Tab label="All" value={"all"} />
+                                <Tab label="Home" value={"home"} />
+                                <Tab label="Work" value={"work"} />
+                                <Tab label="Personal" value={"personal"} />
                             </Tabs>
                         </TabList>
                         <Button className={addNotesButton} onClick={handleOpen}>

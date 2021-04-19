@@ -4,6 +4,8 @@ import { useState } from "react";
 // Material UI
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./theme";
 
 // Components
 import { SearchBar } from "./modules/notes/SearchBar";
@@ -110,25 +112,27 @@ function App() {
     const [notes, setNotes] = useState(noteList);
 
     return (
-        <Box display="flex" alignItems="center" justifyContent="center">
-            <CssBaseline />
-            <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                width="60%"
-                flexDirection="column"
-            >
-                <NoteModal
-                    open={open}
-                    setNotes={setNotes}
-                    notes={notes}
-                    handleClose={handleClose}
-                />
-                <SearchBar />
-                <NotesNavigation notes={notes} handleOpen={handleOpen} />
+        <ThemeProvider theme={theme()}>
+            <Box display="flex" alignItems="center" justifyContent="center">
+                <CssBaseline />
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    width="60%"
+                    flexDirection="column"
+                >
+                    <NoteModal
+                        open={open}
+                        setNotes={setNotes}
+                        notes={notes}
+                        handleClose={handleClose}
+                    />
+                    <SearchBar />
+                    <NotesNavigation notes={notes} handleOpen={handleOpen} />
+                </Box>
             </Box>
-        </Box>
+        </ThemeProvider>
     );
 }
 
