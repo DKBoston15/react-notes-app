@@ -121,7 +121,7 @@ export const NotesNavigation = ({ handleOpen, notes, setNotes }: INavProp) => {
                         </Button>
                     </AppBar>
                 </Container>
-                <NotesBoard setNotes={setNotes} notes={filteredNotes} />;
+                <NotesBoard setNotes={setNotes} notes={filteredNotes} />
             </TabContext>
         </div>
     );
