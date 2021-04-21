@@ -42,9 +42,15 @@ interface INoteProp {
     title: string;
     description: string;
     category: string;
+    lastUpdated: Date;
 }
 
-export const Note = ({ title, description, category }: INoteProp) => {
+export const Note = ({
+    title,
+    description,
+    category,
+    lastUpdated
+}: INoteProp) => {
     const classes = useStyles();
 
     // TODO: Review section below to see if there is a better way to have multiple dynamic classes with TS
@@ -88,7 +94,7 @@ export const Note = ({ title, description, category }: INoteProp) => {
                 <div className={classes.descriptionText}>{description}</div>
             </CardContent>
             <CardActions>
-                <div className={classes.descriptionText}>Jan 24, 2021</div>
+                <div className={classes.descriptionText}>{lastUpdated}</div>
             </CardActions>
         </Card>
     );

@@ -73,14 +73,13 @@ export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
                     id: uuidv4(),
                     title: "",
                     description: "",
-                    category: ""
+                    category: "",
+                    lastUpdated: new Date().toDateString().substring(4)
                 }}
                 onSubmit={(data, { setSubmitting }) => {
                     setSubmitting(true);
-                    console.log("submit: ", data);
                     let newNotes = [...notes, data];
                     setNotes(newNotes);
-                    console.log("NOTES: ", notes);
                     setSubmitting(false);
                     handleClose();
                 }}

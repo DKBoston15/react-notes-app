@@ -17,6 +17,7 @@ interface INotesProp {
         title: string;
         category: string;
         description: string;
+        lastUpdated: Date;
     }[];
 }
 
@@ -30,6 +31,7 @@ export const NotesBoard = ({ notes }: INotesProp) => {
                         title={note.title}
                         description={note.description}
                         category={note.category}
+                        lastUpdated={note.lastUpdated}
                         id={note.id}
                         key={note.id}
                     />
