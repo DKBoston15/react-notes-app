@@ -79,9 +79,6 @@ export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
                 onSubmit={(notePayload, { setSubmitting }) => {
                     setSubmitting(true);
 
-                    let newNotes = [...notes, notePayload];
-                    setNotes(newNotes);
-
                     // console.log("submit: ", data);
                     const newNote = {
                         ...notePayload,
