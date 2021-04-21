@@ -141,7 +141,11 @@ function App() {
                         handleClose={handleClose}
                     />
                     <SearchBar />
-                    <NotesNavigation notes={notes} handleOpen={handleOpen} />
+                    <NotesNavigation
+                        notes={notes}
+                        handleOpen={handleOpen}
+                        setNotes={setNotes}
+                    />
                 </Box>
             </Box>
         </ThemeProvider>
