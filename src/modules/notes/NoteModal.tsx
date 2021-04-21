@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // Modules
 import { NoteForm } from "./NoteForm";
+import { INotesCommonProps } from "../../types";
 
 const useStyles = makeStyles({
     modalContainer: {
@@ -19,11 +20,9 @@ const useStyles = makeStyles({
     }
 });
 
-interface IModalProp {
+interface IModalProp extends INotesCommonProps {
     open: boolean;
-    notes: Array<any>;
     handleClose: () => void;
-    setNotes(notes: Array<any>): any;
 }
 
 export const NoteModal = ({

@@ -11,6 +11,8 @@ import { Formik, Field, Form } from "formik";
 // UUID
 import { v4 as uuidv4 } from "uuid";
 
+import { INotesCommonProps } from "../../types";
+
 const useStyles = makeStyles({
     title: {
         paddingLeft: "4rem",
@@ -52,10 +54,8 @@ const useStyles = makeStyles({
     }
 });
 
-interface INoteFormProps {
-    setNotes(notes: Array<any>): any;
+interface INoteFormProps extends INotesCommonProps {
     handleClose: () => void;
-    notes: Array<any>;
 }
 
 // Install UUID and add ID to new note
@@ -70,16 +70,20 @@ export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
             <hr />
             <Formik
                 initialValues={{
-                    id: uuidv4(),
                     title: "",
                     description: "",
                     category: ""
                 }}
-                onSubmit={(data, { setSubmitting }) => {
+                onSubmit={(notePayload, { setSubmitting }) => {
                     setSubmitting(true);
-                    console.log("submit: ", data);
-                    let newNotes = [...notes, data];
-                    setNotes(newNotes);
+                    // console.log("submit: ", data);
+                    const newNote = {
+                        ...notePayload,
+                        id: notes.length
+                    };
+
+                    let updatedNotes = [...notes, newNote];
+                    setNotes(updatedNotes);
                     console.log("NOTES: ", notes);
                     setSubmitting(false);
                     handleClose();

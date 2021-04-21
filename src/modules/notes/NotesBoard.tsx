@@ -5,20 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 // Components
 import { Note } from "./Note";
 
+import { INotesCommonProps } from "../../types";
+
 const useStyles = makeStyles({
     grid: {
         marginTop: "2em"
     }
 });
 
-interface INotesProp {
-    notes: {
-        id: number;
-        title: string;
-        category: string;
-        description: string;
-    }[];
-}
+type INotesProp = Pick<INotesCommonProps, "notes">;
 
 export const NotesBoard = ({ notes }: INotesProp) => {
     const { grid } = useStyles();
