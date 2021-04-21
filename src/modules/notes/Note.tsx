@@ -42,7 +42,7 @@ interface INoteProp {
     title: string;
     description: string;
     category: string;
-    lastUpdated: Date;
+    lastUpdated: string;
 }
 
 export const Note = ({

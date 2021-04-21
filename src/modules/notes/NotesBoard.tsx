@@ -17,7 +17,7 @@ interface INotesProp {
         title: string;
         category: string;
         description: string;
-        lastUpdated: Date;
+        lastUpdated: string;
     }[];
 }
 
