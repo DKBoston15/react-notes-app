@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // Components
 // import { NotesProgressBar } from "./NotesProgressBar";
 import { NotesBoard } from "./NotesBoard";
+import { getFilteredNotes } from "./utils";
 interface INavProp {
     handleOpen: () => void;
     notes: Array<any>;
@@ -64,6 +65,16 @@ const useStyles = makeStyles({
     }
 });
 
+export type TNote = {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    lastUpdated: string;
+};
+
+export type TTab = "all" | "home" | "work" | "personal";
+
 // 1. Don't duplicate useState when you don't have to
 // 2. Extract JS specific functions to e.g. utils.ts or helpers.ts
 // 3. You can even create a custom hook e.g. useNotes to abstract business logic in React.
@@ -71,19 +82,14 @@ const useStyles = makeStyles({
 export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
     const classes = useStyles();
     // Tab State
-    const [tab, setTab] = useState("all");
+    const [tab, setTab] = useState<TTab>("all");
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
+    const handleChange = (event: React.ChangeEvent<{}>, newValue: TTab) => {
         setTab(newValue);
     };
 
     const filteredNotes = useMemo(() => {
-        if (tab === "all") {
-            return notes;
-        }
-        let newNotes = notes.filter((e) => e.category === tab);
-        console.log(newNotes);
-        return newNotes;
+        return getFilteredNotes(tab, notes);
     }, [notes, tab]);
 
     return (
@@ -94,6 +100,7 @@ export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
                         <Tabs value={tab} onChange={handleChange}>
                             <Tab label="All" value={"all"} />
                             <Tab label="Home" value={"home"} />
+                            {/* <FilterButton isActive={tab === "home"} category="home" /> */}
                             {tab !== "home" && (
                                 <div
                                     className={`${classes.circle} ${classes.bgOrange}`}
