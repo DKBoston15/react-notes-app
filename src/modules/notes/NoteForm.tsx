@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Field, Form } from "formik";
 
-import { INotesCommonProps } from "../../types";
+import { TNote, INotesCommonProps } from "../../types";
 
 const useStyles = makeStyles({
     title: {
@@ -53,11 +53,19 @@ const useStyles = makeStyles({
 
 interface INoteFormProps extends INotesCommonProps {
     handleClose: () => void;
+    searchedNotes: TNote[];
+    setSearchedNotes: (searchedNotes: TNote[]) => void;
 }
 
 // Install UUID and add ID to new note
 
-export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
+export const NoteForm = ({
+    setNotes,
+    notes,
+    handleClose,
+    searchedNotes,
+    setSearchedNotes
+}: INoteFormProps) => {
     const classes = useStyles();
     return (
         <>
@@ -80,6 +88,7 @@ export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
                     };
                     let updatedNotes = [...notes, newNote];
                     setNotes(updatedNotes);
+                    setSearchedNotes(updatedNotes);
                     console.log("NOTES: ", notes);
                     setSubmitting(false);
                     handleClose();

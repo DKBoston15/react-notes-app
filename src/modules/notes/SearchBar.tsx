@@ -46,12 +46,9 @@ export const SearchBar = ({
         for (let note = 0; note < searchedNotesArray.length; note++) {
             newSearchedNotesArray.push(searchedNotesArray[note].item);
         }
-        if (newSearchedNotesArray.length === 0) {
-            setSearchedNotes(notes);
-        }
-        if (newSearchedNotesArray.length !== 0) {
-            setSearchedNotes(newSearchedNotesArray);
-        }
+        newSearchedNotesArray.length === 0
+            ? setSearchedNotes(notes)
+            : setSearchedNotes(newSearchedNotesArray);
     };
 
     return (

@@ -220,6 +220,8 @@ function App() {
                     <NoteModal
                         open={open}
                         setNotes={setNotes}
+                        searchedNotes={searchedNotes}
+                        setSearchedNotes={setSearchedNotes}
                         notes={notes}
                         handleClose={handleClose}
                     />

@@ -49,7 +49,7 @@ const useStyles = makeStyles({
 
     customAppBar: {
         background: "none",
-        width: "100%",
+        width: "72em",
         color: "black",
         boxShadow: "none",
         justifyContent: "space-between",
