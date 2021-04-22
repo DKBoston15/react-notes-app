@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         color: "white",
         fontSize: "1rem",
         minWidth: "12em",
-        minHeight: "6em",
+        minHeight: "100%",
         boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
     },
     home: {
