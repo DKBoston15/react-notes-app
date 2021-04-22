@@ -16,6 +16,7 @@ import { NotesBoard } from "./NotesBoard";
 import { getFilteredNotes } from "./utils";
 interface INavProp {
     handleOpen: () => void;
+    setNotes(notes: Array<any>): any;
     notes: Array<any>;
 }
 
@@ -79,7 +80,7 @@ export type TTab = "all" | "home" | "work" | "personal";
 // 2. Extract JS specific functions to e.g. utils.ts or helpers.ts
 // 3. You can even create a custom hook e.g. useNotes to abstract business logic in React.
 // 4. Point 2 will allow you to wirte great unit tests using e.g. jest
-export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
+export const NotesNavigation = ({ handleOpen, notes, setNotes }: INavProp) => {
     const classes = useStyles();
     // Tab State
     const [tab, setTab] = useState<TTab>("all");
@@ -127,7 +128,7 @@ export const NotesNavigation = ({ handleOpen, notes }: INavProp) => {
                         </Button>
                     </AppBar>
                 </Container>
-                <NotesBoard notes={filteredNotes} />;
+                <NotesBoard setNotes={setNotes} notes={filteredNotes} />
             </TabContext>
         </div>
     );

@@ -35,21 +35,27 @@ const useStyles = makeStyles({
     titleText: {
         fontSize: "1.4em",
         fontWeight: "bold"
+    },
+    cursorClass: {
+        cursor: "pointer"
     }
 });
 interface INoteProp {
-    id: number;
+    id: string;
     title: string;
     description: string;
     category: string;
-    lastUpdated: string;
+    lastUpdated: Date;
+    deleteNote: (id: string) => void;
 }
 
 export const Note = ({
+    id,
     title,
     description,
     category,
-    lastUpdated
+    lastUpdated,
+    deleteNote
 }: INoteProp) => {
     const classes = useStyles();
 
@@ -87,8 +93,15 @@ export const Note = ({
                         alignItems="center"
                         justifyContent="space-between"
                     >
-                        <EditIcon color="secondary" />
-                        <DeleteIcon color="secondary" />
+                        <EditIcon
+                            color="secondary"
+                            className={classes.cursorClass}
+                        />
+                        <DeleteIcon
+                            className={classes.cursorClass}
+                            color="secondary"
+                            onClick={() => deleteNote(id)}
+                        />
                     </Box>
                 </Box>
                 <div className={classes.descriptionText}>{description}</div>
