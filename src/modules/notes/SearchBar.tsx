@@ -43,12 +43,16 @@ export const SearchBar = ({
         setSearchValue(event.target.value);
         let searchedNotesArray = fuse.search(searchValue);
         let newSearchedNotesArray = [];
+        console.log(event.target.value);
         for (let note = 0; note < searchedNotesArray.length; note++) {
             newSearchedNotesArray.push(searchedNotesArray[note].item);
         }
         newSearchedNotesArray.length === 0
             ? setSearchedNotes(notes)
             : setSearchedNotes(newSearchedNotesArray);
+        if (event.target.value === "") {
+            setSearchedNotes(notes);
+        }
     };
 
     return (

@@ -203,7 +203,6 @@ function App() {
     };
     const [notes, setNotes] = useState(noteList);
 
-    //Testing
     const [searchedNotes, setSearchedNotes] = useState(noteList);
 
     return (
