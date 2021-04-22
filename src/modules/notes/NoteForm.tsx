@@ -76,12 +76,11 @@ export const NoteForm = ({ setNotes, notes, handleClose }: INoteFormProps) => {
                 }}
                 onSubmit={(notePayload, { setSubmitting }) => {
                     setSubmitting(true);
-                    // console.log("submit: ", data);
                     const newNote = {
                         ...notePayload,
-                        id: notes.length
+                        id: notes.length,
+                        lastUpdated: new Date().toDateString().substring(4)
                     };
-
                     let updatedNotes = [...notes, newNote];
                     setNotes(updatedNotes);
                     console.log("NOTES: ", notes);

@@ -3,6 +3,7 @@ export type TNote = {
     title: string;
     category: string;
     description: string;
+    lastUpdated: string;
 };
 
 export interface INotesCommonProps {

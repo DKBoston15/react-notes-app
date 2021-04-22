@@ -41,12 +41,12 @@ const useStyles = makeStyles({
     }
 });
 interface INoteProp {
-    id: string;
+    id: number;
     title: string;
     description: string;
     category: string;
-    lastUpdated: Date;
-    deleteNote: (id: string) => void;
+    lastUpdated: string;
+    deleteNote: (id: number) => void;
 }
 
 export const Note = ({

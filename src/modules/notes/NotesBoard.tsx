@@ -19,9 +19,9 @@ const useStyles = makeStyles({
     }
 });
 
-type INotesProp = Pick<INotesCommonProps, "notes">;
+type INotesProp = Pick<INotesCommonProps, "notes" | "setNotes">;
 
-export const NotesBoard = ({ notes }: INotesProp) => {
+export const NotesBoard = ({ notes, setNotes }: INotesProp) => {
     const { grid } = useStyles();
 
     const [open, setOpen] = useState(false);
@@ -30,7 +30,7 @@ export const NotesBoard = ({ notes }: INotesProp) => {
         setOpen(false);
     };
 
-    const deleteNote = (id: string) => {
+    const deleteNote = (id: number) => {
         let newNotes = notes.filter(function (note, index, arr) {
             return note.id !== id;
         });
