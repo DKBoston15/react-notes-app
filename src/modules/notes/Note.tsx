@@ -1,6 +1,3 @@
-// React
-import { useState, useMemo } from "react";
-
 // Material UI
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
@@ -20,13 +17,13 @@ const useStyles = makeStyles({
         minHeight: "6em",
         boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
     },
-    bgOrange: {
+    home: {
         backgroundColor: "#FF9100 !important"
     },
-    bgPurple: {
+    work: {
         backgroundColor: "#5C6BC0"
     },
-    bgGreen: {
+    personal: {
         backgroundColor: "#66BB6A"
     },
     descriptionText: {
@@ -58,25 +55,9 @@ export const Note = ({
     deleteNote
 }: INoteProp) => {
     const classes = useStyles();
-
-    // TODO: Review section below to see if there is a better way to have multiple dynamic classes with TS
-
-    const [cardBG, setCardBG] = useState("");
-    useMemo(() => {
-        console.log("Setting class");
-        if (category === "home") {
-            setCardBG("makeStyles-bgOrange-24");
-        }
-        if (category === "work") {
-            setCardBG("makeStyles-bgPurple-25");
-        }
-        if (category === "personal") {
-            setCardBG("makeStyles-bgGreen-26");
-        }
-    }, [category]);
-
     return (
-        <Card className={[classes.cardWrapper, cardBG].join(" ")}>
+        // @ts-ignore
+        <Card className={[classes.cardWrapper, classes[category]].join(" ")}>
             <CardContent>
                 <Box
                     display="flex"

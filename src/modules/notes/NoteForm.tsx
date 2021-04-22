@@ -8,9 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Field, Form } from "formik";
 
-// UUID
-import { v4 as uuidv4 } from "uuid";
-
 import { INotesCommonProps } from "../../types";
 
 const useStyles = makeStyles({
