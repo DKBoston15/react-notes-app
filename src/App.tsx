@@ -202,7 +202,6 @@ function App() {
         setOpen(true);
     };
     const [notes, setNotes] = useState(noteList);
-
     const [searchedNotes, setSearchedNotes] = useState(noteList);
 
     return (
@@ -233,6 +232,7 @@ function App() {
                     <NotesNavigation
                         notes={notes}
                         searchedNotes={searchedNotes}
+                        setSearchedNotes={setSearchedNotes}
                         handleOpen={handleOpen}
                         setNotes={setNotes}
                     />

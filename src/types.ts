@@ -9,4 +9,5 @@ export type TNote = {
 export interface INotesCommonProps {
     setNotes: (notes: TNote[]) => void;
     notes: TNote[];
+    setSearchedNotes: (notes: TNote[]) => void;
 }

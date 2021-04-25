@@ -19,6 +19,7 @@ interface INavProp {
     setNotes(notes: Array<any>): any;
     notes: Array<any>;
     searchedNotes: Array<any>;
+    setSearchedNotes(notes: Array<any>): any;
 }
 
 const useStyles = makeStyles({
@@ -85,7 +86,8 @@ export const NotesNavigation = ({
     handleOpen,
     notes,
     setNotes,
-    searchedNotes
+    searchedNotes,
+    setSearchedNotes
 }: INavProp) => {
     const classes = useStyles();
     // Tab State
@@ -134,7 +136,11 @@ export const NotesNavigation = ({
                         </Button>
                     </AppBar>
                 </Container>
-                <NotesBoard setNotes={setNotes} notes={filteredNotes} />
+                <NotesBoard
+                    setNotes={setNotes}
+                    notes={filteredNotes}
+                    setSearchedNotes={setSearchedNotes}
+                />
             </TabContext>
         </div>
     );
