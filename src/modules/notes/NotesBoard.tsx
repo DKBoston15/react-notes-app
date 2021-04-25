@@ -11,7 +11,11 @@ import Alert from "@material-ui/lab/Alert";
 // Components
 import { Note } from "./Note";
 
+// Types
 import { INotesCommonProps } from "../../types";
+
+// Utils
+import { deleteNote } from "../../utils";
 
 const useStyles = makeStyles({
     grid: {
@@ -19,9 +23,16 @@ const useStyles = makeStyles({
     }
 });
 
-type INotesProp = Pick<INotesCommonProps, "notes" | "setNotes">;
+type INotesProp = Pick<
+    INotesCommonProps,
+    "notes" | "setNotes" | "setSearchedNotes"
+>;
 
-export const NotesBoard = ({ notes, setNotes }: INotesProp) => {
+export const NotesBoard = ({
+    notes,
+    setNotes,
+    setSearchedNotes
+}: INotesProp) => {
     const { grid } = useStyles();
 
     const [open, setOpen] = useState(false);
@@ -30,11 +41,10 @@ export const NotesBoard = ({ notes, setNotes }: INotesProp) => {
         setOpen(false);
     };
 
-    const deleteNote = (id: number) => {
-        let newNotes = notes.filter(function (note, index, arr) {
-            return note.id !== id;
-        });
+    const callDeleteNote = (id: number) => {
+        let newNotes = deleteNote(notes, id);
         setNotes(newNotes);
+        setSearchedNotes(newNotes);
         setOpen(true);
     };
 
@@ -50,7 +60,7 @@ export const NotesBoard = ({ notes, setNotes }: INotesProp) => {
                             lastUpdated={note.lastUpdated}
                             id={note.id}
                             key={note.id}
-                            deleteNote={deleteNote}
+                            callDeleteNote={callDeleteNote}
                         />
                     </Grid>
                 ))}

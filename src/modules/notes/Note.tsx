@@ -14,8 +14,11 @@ const useStyles = makeStyles({
         color: "white",
         fontSize: "1rem",
         minWidth: "12em",
-        minHeight: "6em",
-        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
+        minHeight: "100%",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between"
     },
     home: {
         backgroundColor: "#FF9100 !important"
@@ -27,6 +30,9 @@ const useStyles = makeStyles({
         backgroundColor: "#66BB6A"
     },
     descriptionText: {
+        color: "hsla(0, 0%, 100%, 0.85)"
+    },
+    lastUpdatedText: {
         color: "hsla(0, 0%, 100%, 0.85)"
     },
     titleText: {
@@ -43,7 +49,7 @@ interface INoteProp {
     description: string;
     category: string;
     lastUpdated: string;
-    deleteNote: (id: number) => void;
+    callDeleteNote: (id: number) => void;
 }
 
 export const Note = ({
@@ -52,7 +58,7 @@ export const Note = ({
     description,
     category,
     lastUpdated,
-    deleteNote
+    callDeleteNote
 }: INoteProp) => {
     const classes = useStyles();
     return (
@@ -81,14 +87,14 @@ export const Note = ({
                         <DeleteIcon
                             className={classes.cursorClass}
                             color="secondary"
-                            onClick={() => deleteNote(id)}
+                            onClick={() => callDeleteNote(id)}
                         />
                     </Box>
                 </Box>
                 <div className={classes.descriptionText}>{description}</div>
             </CardContent>
             <CardActions>
-                <div className={classes.descriptionText}>{lastUpdated}</div>
+                <div className={classes.lastUpdatedText}>{lastUpdated}</div>
             </CardActions>
         </Card>
     );
